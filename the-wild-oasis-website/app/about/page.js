@@ -1,5 +1,8 @@
+import image1 from "@/public/about-1.jpg";
+import image2 from "@/public/about-2.jpg";
+import Image from "next/image";
 export const metadata = {
-  title: "Guest area",
+  title: "About",
 };
 
 export default function Page() {
@@ -33,15 +36,19 @@ export default function Page() {
       </div>
 
       <div className="col-span-2">
-        <img
-          src="/about-1.jpg"
+        <Image
+          src={image1}
           alt="Family sitting around a fire pit in front of cabin"
+          placeholder="blur"
+          quality={80}
         />
       </div>
 
-      <div className="col-span-2">
-        <img
+      <div className="relative aspect-square col-span-2">
+        <Image
           src="/about-2.jpg"
+          fill
+          className="object-cover"
           alt="Family that manages The Wild Oasis"
         />
       </div>
