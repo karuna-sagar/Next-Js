@@ -6,6 +6,7 @@ export default function Filter() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const activeFilter = searchParams.get("capacity");
   function handleFilter(filter) {
     const params = new URLSearchParams(searchParams);
     // console.log("params", params);
@@ -15,30 +16,48 @@ export default function Filter() {
 
   return (
     <div className="border border-primary-800 flex">
-      <button
-        className="px-5 py-2 hover:bg-primary-700"
-        onClick={() => handleFilter("all")}
+      <Button
+        filter="all"
+        handleFilter={handleFilter}
+        activeFilter={activeFilter}
       >
         All Cabins
-      </button>
-      <button
-        className="px-5 py-2 hover:bg-primary-700"
-        onClick={() => handleFilter("small")}
+      </Button>
+      <Button
+        filter="small"
+        handleFilter={handleFilter}
+        activeFilter={activeFilter}
       >
         1&mdash;3 guests
-      </button>
-      <button
-        className="px-5 py-2 hover:bg-primary-700"
-        onClick={() => handleFilter("medium")}
+      </Button>
+      <Button
+        filter="medium"
+        handleFilter={handleFilter}
+        activeFilter={activeFilter}
       >
         4&mdash;7 guests
-      </button>
-      <button
-        className="px-5 py-2 hover:bg-primary-700"
-        onClick={() => handleFilter("large")}
+      </Button>
+      <Button
+        filter="large"
+        handleFilter={handleFilter}
+        activeFilter={activeFilter}
       >
         8&mdash;12 guests
-      </button>
+      </Button>
     </div>
+  );
+}
+
+function Button({ filter, activeFilter, handleFilter, children }) {
+  return (
+    <button
+      className={`px-5 py-2 hover:bg-primary-700 ${
+        filter === activeFilter ? "bg-primary-700 text-primary-50" : ""
+      } "
+        `}
+      onClick={() => handleFilter(filter)}
+    >
+      {children}
+    </button>
   );
 }
