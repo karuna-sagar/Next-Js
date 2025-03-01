@@ -1,11 +1,7 @@
 import Cabin from "@/app/_components/Cabin";
 import Reservation from "@/app/_components/Reservation";
-import ReservationReminder from "@/app/_components/ReservationReminder";
 import Spinner from "@/app/_components/Spinner";
 import { getCabin } from "@/app/_lib/data-service";
-import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
-// import { Cabin } from "next/font/google";
-import Image from "next/image";
 import { Suspense } from "react";
 
 // export const metadata = {
@@ -34,7 +30,6 @@ export default async function Page({ params }) {
         </h2>
         <Suspense fallback={<Spinner />}>
           <Reservation cabin={cabin} />
-          <ReservationReminder />
         </Suspense>
       </div>
     </div>
