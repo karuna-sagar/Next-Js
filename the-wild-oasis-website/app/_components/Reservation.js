@@ -19,7 +19,7 @@ export default async function Reservation({ cabin }) {
         settings={settings}
         bookedDates={bookedDates}
       />
-      {session.user ? (
+      {session?.user ? (
         <ReservationForm
           cabin={cabin}
           user={session.user}
