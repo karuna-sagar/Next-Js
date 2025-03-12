@@ -142,14 +142,33 @@ export async function getSettings() {
   return data;
 }
 
+// export async function getCountries() {
+//   try {
+//     const res = await fetch(
+//       "https://restcountries.com/v3.1/all?fields=name,flags"
+//     );
+//     const countries = await res.json();
+//     return countries;
+//   } catch {
+//     throw new Error("Could not fetch countries");
+//   }
+// }
+
 export async function getCountries() {
   try {
     const res = await fetch(
-      "https://restcountries.com/v2/all?fields=name,flag"
+      "https://restcountries.com/v3.1/all?fields=name,flags"
     );
-    const countries = await res.json();
-    return countries;
-  } catch {
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+    const data = await res.json();
+    return data.map((country) => ({
+      name: country.name.common,
+      flag: country.flags.svg,
+    }));
+  } catch (error) {
+    console.error("Error fetching countries:", error);
     throw new Error("Could not fetch countries");
   }
 }
