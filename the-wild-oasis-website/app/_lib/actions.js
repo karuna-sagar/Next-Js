@@ -23,6 +23,12 @@ export async function updateGuest(formData) {
   revalidatePath("/account/profile");
 }
 
+export async function updateBooking(formData) {
+  // const session = await auth();
+  console.log(formData);
+  // if (!session) throw new Error("You must be logged in");
+}
+
 export async function deleteReservation(bookingId) {
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
