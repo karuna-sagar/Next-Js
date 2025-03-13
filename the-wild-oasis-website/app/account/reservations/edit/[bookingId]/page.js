@@ -1,7 +1,7 @@
 export default function Page({ params }) {
   // CHANGE
   // const reservationId = 23;
-  const bookingId = params;
+  const { bookingId } = params;
   const maxCapacity = 23;
 
   return (
