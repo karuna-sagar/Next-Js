@@ -1,4 +1,5 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
 
@@ -10,7 +11,7 @@ export async function updateGuest(formData) {
   if (!/^[a-zA-Z0-9]{6,12}$/.test(nationalID))
     throw new Error("Please Provide a valid national ID");
   const updateData = { nationality, countryFlag, nationalID };
-  console.log(updateData);
+  // console.log(updateData);
 
   const { data, error } = await supabase
     .from("guests")
@@ -18,6 +19,7 @@ export async function updateGuest(formData) {
     .eq("id", session.user.guestId);
 
   if (error) throw new Error("Booking could not be updated");
+  revalidatePath("/account/profile");
 }
 
 export async function signInAction() {
