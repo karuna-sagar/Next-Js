@@ -1,8 +1,12 @@
-export default function Page({ params }) {
+import { getBooking, getBookings, getCabin } from "@/app/_lib/data-service";
+
+export default async function Page({ params }) {
   // CHANGE
   // const reservationId = 23;
   const { bookingId } = params;
-  const maxCapacity = 23;
+  // const maxCapacity = 23;
+  const { numGuests, observations, cabinId } = await getBooking(bookingId);
+  const { maxCapacity } = await getCabin(cabinId);
 
   return (
     <div>
