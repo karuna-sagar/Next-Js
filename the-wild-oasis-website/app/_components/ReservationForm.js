@@ -12,13 +12,14 @@ function ReservationForm({ cabin, user }) {
   const endDate = range.to;
   const numNights = differenceInDays(endDate, startDate);
   const cabinPrice = numNights * (regularPrice - discount);
-  const bookingDate = {
+  const bookingData = {
     startDate,
     endDate,
     numNights,
     cabinPrice,
     cabinId: id,
   };
+  const createBookingWithData = createBooking(null, bookingData);
   return (
     <div className="scale-[1.01]">
       <div className="bg-primary-800 text-primary-300 px-16 py-2 flex justify-between items-center">
