@@ -25,7 +25,21 @@ export async function updateGuest(formData) {
 }
 
 export async function createBooking(bookingData, formData) {
-  console.log(formData);
+  // console.log(formData);
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+  const newBooking = {
+    ...bookingData,
+    guestId: session.user.guestId,
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations").slice(0, 1000),
+    extrasPrice: 0,
+    totalPrice: bookingData.cabinPrice,
+    isPaid: false,
+    hasBreakfast: false,
+    status: "unconfirmed",
+  };
+  console.log(newBooking);
 }
 
 export async function updateBooking(formData) {
