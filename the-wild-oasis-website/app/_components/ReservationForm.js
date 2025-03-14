@@ -19,7 +19,7 @@ function ReservationForm({ cabin, user }) {
     cabinPrice,
     cabinId: id,
   };
-  const createBookingWithData = createBooking(null, bookingData);
+  const createBookingWithData = createBooking.bind(null, bookingData);
   return (
     <div className="scale-[1.01]">
       <div className="bg-primary-800 text-primary-300 px-16 py-2 flex justify-between items-center">
@@ -37,7 +37,7 @@ function ReservationForm({ cabin, user }) {
         </div>
       </div>
       <form
-        action={createBooking}
+        action={createBookingWithData}
         className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col"
       >
         <div className="space-y-2">
